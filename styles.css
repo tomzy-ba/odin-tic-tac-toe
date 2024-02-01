@@ -1,23 +1,25 @@
 body {
+    margin: 0;
     display: flex;    
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 #game-board {
+    align-items: center;
+    justify-content: center;
     display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     border: 1px solid black;
     height: 40rem;
     width: 40rem;
 }
-div {
+#game-board div {
     border: 1px solid red;
-}
-
-#top {
-    flex:1;
-}
-#mid {
-    flex:1;
-}
-#bottom {
-    flex:1;
+    height: 12rem;
+    width: 12rem;
+    text-align: center;
+    display: inline-block;
 }
