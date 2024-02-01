@@ -1,0 +1,23 @@
+body {
+    display: flex;    
+}
+
+#game-board {
+    display: flex;
+    border: 1px solid black;
+    height: 40rem;
+    width: 40rem;
+}
+div {
+    border: 1px solid red;
+}
+
+#top {
+    flex:1;
+}
+#mid {
+    flex:1;
+}
+#bottom {
+    flex:1;
+}

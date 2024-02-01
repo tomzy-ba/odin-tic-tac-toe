@@ -1,4 +1,5 @@
-
+// so first we need to create
+const gameBoard = [];
 
 function createUser (player1, player2) {
     return {
