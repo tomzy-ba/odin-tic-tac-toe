@@ -60,28 +60,30 @@ startButton.addEventListener("click", startGame);
             const cellDiv = document.createElement("div");
             cellDiv.classList.add("cell");
             cellDiv.innerHTML = cell;
-
             gameContainer.appendChild(cellDiv);
 
             player1Turn = false;
             cellDiv.addEventListener("click", function() {
                 player1Turn = !player1Turn;
                 console.log(player1Turn);
-                if (player1Turn === true) {
+
+                if (player1Turn === true && board[index] !== "X" && board[index] !== "O") {
                     board[index] = "X";
                     cellDiv.innerHTML = "X";
                     console.log(board);
-                }   else {
+
+                }   else if (board[index] !== "X" && board[index] !== "O") {
                         board[index] = "O";
                         cellDiv.innerHTML = "O";
                         console.log(board);
                     }
+
                     if (checkWin() === true) {
                         setTimeout(() => {
                         alert("Player 1 wins!");
                         gameContainer.innerHTML = "";
                         board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-                        }, 500);
+                        }, 200);
                     }
 
             });
