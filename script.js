@@ -11,6 +11,8 @@ function startGame() {
     let player2 = prompt("Player 2, enter your name");
     players(player1, player2);
     console.log(player1Name, player2Name);
+    // playGame();
+    addDom();
 }
 
 
@@ -27,27 +29,21 @@ const board = [
             game = false;
         }
     }
+const startButton = document.querySelector("#start-button");
+startButton.addEventListener("click", startGame);
 
-function playGame()  {
+ function playGame()  {
     game = true;
     while (game == true) {
-        inputPlace = prompt("Player 1, enter the cell you want to play in: 1-9");
-        board[inputPlace-1] = "X";
-        addDom();
 
         console.log(board);
         checkWin();
-        if (game == false) {console.log("Player1 Wins!"); break; }
 
         
 
-        inputPlace = prompt("Player 2, enter the cell you want to play in: 1-9");
-        board[inputPlace-1] = "O";
-        addDom();
 
         console.log(board);
         checkWin();
-        if (game == false) {console.log("Player2 Wins!"); break; }
     }
 
     }
@@ -59,12 +55,15 @@ function playGame()  {
             const cellDiv = document.createElement("div");
             cellDiv.classList.add("cell");
             cellDiv.innerHTML = cell;
+
             gameContainer.appendChild(cellDiv);
+
+            cellDiv.addEventListener("click", function() {
+                    board[index] = "X";
+                    cellDiv.innerHTML = "X";
+
+            });
+
         });
 
         }
-
-console.log(board)
-startGame();
-playGame();
-addDom();
