@@ -14,12 +14,15 @@ body {
     height: 30rem;
     border: 1px solid black;
     gap:1px;
-    align-items: center;
-    justify-content: center;
 }
 #game-board div {
     width: 33%;
     height: 33%;
     border: 1px solid red;
+    display: flex;
     box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    
 }
