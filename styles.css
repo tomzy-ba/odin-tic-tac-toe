@@ -26,6 +26,9 @@ body {
     font-size: 5rem;
     
 }
+#game-board div:hover {
+    cursor: pointer;
+}
 #start-button {
     margin: 10px;
     border-radius: 10px;

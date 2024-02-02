@@ -15,8 +15,7 @@ function startGame() {
     addDom();
 }
 
-
-const board = [
+let board = [
     1, 2, 3,
     4, 5, 6,
     7, 8, 9
@@ -25,8 +24,14 @@ const board = [
     function checkWin() {
         if (board[0] === board[1] && board[0] === board[2] ||
             board[3] === board[4] && board[3] === board[5] || 
-            board[6] === board[7] && board[6] === board[8]) {
-            game = false;
+            board[6] === board[7] && board[6] === board[8] ||
+            board[0] === board[3] && board[0] === board[6] ||
+            board[1] === board[4] && board[1] === board[7] ||
+            board[2] === board[5] && board[2] === board[8] ||
+            board[0] === board[4] && board[0] === board[8] ||
+            board[2] === board[4] && board[2] === board[6]) 
+            {
+                return true;
         }
     }
 const startButton = document.querySelector("#start-button");
@@ -58,9 +63,26 @@ startButton.addEventListener("click", startGame);
 
             gameContainer.appendChild(cellDiv);
 
+            player1Turn = false;
             cellDiv.addEventListener("click", function() {
+                player1Turn = !player1Turn;
+                console.log(player1Turn);
+                if (player1Turn === true) {
                     board[index] = "X";
                     cellDiv.innerHTML = "X";
+                    console.log(board);
+                }   else {
+                        board[index] = "O";
+                        cellDiv.innerHTML = "O";
+                        console.log(board);
+                    }
+                    if (checkWin() === true) {
+                        setTimeout(() => {
+                        alert("Player 1 wins!");
+                        gameContainer.innerHTML = "";
+                        board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+                        }, 500);
+                    }
 
             });
 
