@@ -1,20 +1,17 @@
 // so first we need to create
-const board = ["lol"];
 
-function gameBoard(topleft, topmid, topright, midleft, midmid, midright, bottomleft, bottommid, bottomright) {
-    topleft = topleft;
-    topmid = topmid;
-    topright = topright;
-    midleft = midleft;
-    midmid = midmid;
-    midright = midright;
-    bottomleft = bottomleft;
-    bottommid = bottommid;
-    bottomright = bottomright;
 
-    return {topleft, topmid, topright, midleft, midmid, midright, bottomleft, bottommid, bottomright };
+function gameBoard() {
+    const board = { squares: [null, null, null, null, null, null, null, null, null]};
+    board.squares.forEach((square, index) => {
+        
+})
+
+    // complete for the rest
+    return board;
 }
-console.log(gameBoard(board))
+gameBoard()
+console.log(gameBoard())
 
 function createUser (player1, player2) {
         player1 = player1;
