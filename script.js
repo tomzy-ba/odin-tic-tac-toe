@@ -61,16 +61,36 @@ function startGame() {
     const allCells = document.querySelectorAll("#game-board div");
     const ghostLetters = document.querySelectorAll("#game-board span");
 
-    ghostLetters.forEach(cell => {
-        cell.addEventListener("mouseover", () => {
+let playerTurn = "player1";
+ghostLetters.forEach(letter => {
+    letter.textContent = "X";
+});
+
+
+        
+        
+
+ 
+    allCells.forEach(cell => {
+        cell.addEventListener("click", function() {
+            if (playerTurn === "player1") {
                 cell.textContent = "X";
-                console.log(cell.textContent);
-        });
-        cell.addEventListener("mouseout", () => {
-            cell.textContent = "";
+                playerTurn = "player2"
+                ghostLetters.forEach(letter => {
+                    letter.textContent = "O";
+                });
+            } else {
+                cell.textContent = "O";
+                playerTurn = "player1";
+
+                ghostLetters.forEach(letter => {
+                    letter.textContent = "X";
+                });
+            }
         });
     });
-    
+
+       
 }
 
 startGame();
