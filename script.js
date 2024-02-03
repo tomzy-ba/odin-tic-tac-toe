@@ -59,9 +59,11 @@ let board = [
 
     function addDom() {
         const gameContainer = document.getElementById("game-board");
+        const gameStatus = document.getElementById("game-status");
         board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         gameContainer.innerHTML = "";
         endmsg.innerHTML = "";
+        gameStatus.innerHTML = `${player1Name}'s turn`;
 
         let playerTurn = true;
         board.forEach((cell, index) => {
@@ -71,7 +73,6 @@ let board = [
             gameContainer.appendChild(cellDiv);
 
 
-            const gameStatus = document.getElementById("game-status");
 
             cellDiv.addEventListener("click", function() {
                 console.log(playerTurn);
