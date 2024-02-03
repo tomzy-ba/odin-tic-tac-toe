@@ -12,20 +12,19 @@ function checkWin()  {
     g = game.grid;
     const gameEnders = [
     g[0] === g[1] && g[1] === g[2],
-    g[3] === g[4] && g[5] === g[5],
+    g[3] === g[4] && g[4] === g[5],
     g[6] === g[7] && g[7] === g[8],
     g[0] === g[3] && g[3] === g[6],
     g[1] === g[4] && g[4] === g[7],
     g[2] === g[5] && g[5] === g[8],
     g[0] === g[4] && g[4] === g[8],
     g[2] === g[4] && g[4] === g[6],
-    g[0] !== 0 && g[1] !== 1 && g[2] !== 2 && g[3] !== 3 && g[4] !== 4 && g[5] !== 5 && g[6] !== 6 && g[7] !== 7 && g[8] !== 8
 
     ]
     const checkEnders = gameEnders.find(ender => ender === true);
     const index = gameEnders.indexOf(checkEnders);
     
-
+console.log(game.grid);
 if (index === 0) { // top row
     console.log("top row");
 
@@ -95,13 +94,11 @@ ghostLetters.forEach(letter => {
     allCells.forEach((cell, index) => {
         cell.addEventListener("click", function() {
             if (playerTurn === "player1" && cell.textContent !== "X" && cell.textContent !== "O" && checkWin() == -1) {
-                console.log(checkWin());
                 cell.textContent = "X";
                 playerTurn = "player2"
 
 
                 game.grid[index] = "X"
-                console.log(checkWin());
                 
 
                 ghostLetters.forEach(letter => {
@@ -113,12 +110,12 @@ ghostLetters.forEach(letter => {
                 playerTurn = "player1";
 
                 game.grid[index] = "O"
-                console.log(checkWin());
 
                 ghostLetters.forEach(letter => {
                     letter.textContent = "X";
                 });
             } 
+            checkWin();
         });
     });
 
