@@ -38,6 +38,8 @@ body {
     height: 100%;
     text-align: center;
     opacity: 0;
+    display: hidden;
+    user-select: none;
 }
 #game-board span:hover {
     transition: 1s;

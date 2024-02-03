@@ -1,24 +1,24 @@
 
 let game = {
     grid: [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8]
+        0, 1, 2,
+        3, 4, 5,
+        6, 7, 8
     ],
 };
-console.log(game.grid);
 
 
 function checkWin(g)  {
     const gameEnders = [
-    g[0][0] === g[0][1] && g[0][1] === g[0][2],
-    g[1][0] === g[1][1] && g[1][0] === g[1][2],
-    g[2][0] === g[2][1] && g[2][1] === g[2][2],
-    g[0][0] === g[1][0] && g[1][0] === g[2][0],
-    g[0][1] === g[1][1] && g[1][1] === g[2][1],
-    g[0][2] === g[1][2] && g[1][2] === g[2][2],
-    g[0][0] === g[1][1] && g[1][1] === g[2][2],
-    g[0][2] === g[1][1] && g[1][1] === g[2][0]
+    g[0] === g[1] && g[1] === g[2],
+    g[3] === g[4] && g[5] === g[5],
+    g[6] === g[7] && g[7] === g[8],
+    g[0] === g[3] && g[3] === g[6],
+    g[1] === g[4] && g[4] === g[7],
+    g[2] === g[5] && g[5] === g[8],
+    g[0] === g[4] && g[4] === g[8],
+    g[2] === g[4] && g[4] === g[6]
+
     ]
     const checkEnders = gameEnders.find(ender => ender === true);
     const index = gameEnders.indexOf(checkEnders);
@@ -72,12 +72,13 @@ ghostLetters.forEach(letter => {
         
         
  
-    allCells.forEach(cell => {
-        console.log(cell.textContent);
+    allCells.forEach((cell, index) => {
         cell.addEventListener("click", function() {
             if (playerTurn === "player1" && cell.textContent !== "X" && cell.textContent !== "O") {
                 cell.textContent = "X";
                 playerTurn = "player2"
+
+
                 
 
                 ghostLetters.forEach(letter => {
