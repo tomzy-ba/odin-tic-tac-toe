@@ -69,7 +69,7 @@ let board = [
         endmsg.innerHTML = "";
         gameStatus.innerHTML = `${player1Name}'s turn`;
 
-        let playerTurn = true;
+        playerTurn = true;
         board.forEach((cell, index) => {
             const cellDiv = document.querySelector("#game-board div");
             cellDiv.innerHTML = cell;
@@ -88,7 +88,7 @@ let board = [
                     console.log(board);
                     gameStatus.innerHTML = `${player2Name}'s turn`;
 
-                }   else if (board[index] !== "X" && board[index] !== "O" && checkWin() !== true && checkWin() !== "tie"){
+                }   else if (playerTurn === false && board[index] !== "X" && board[index] !== "O" && checkWin() !== true && checkWin() !== "tie"){
                         playerTurn = !playerTurn;
                         board[index] = "O";
                         cellDiv.innerHTML = "O";
@@ -105,14 +105,14 @@ let board = [
                     if (checkWin() === true) {
                         gameStatus.innerHTML = "";
                         setTimeout(() => {
-                        }, 500);
+                        }, 50);
 
 
                         if (playerTurn === false && gameon === true) {
-                    
-                        container.showModal();
-                        container.innerHTML = `${player1Name} wins!`;
-                        gameon = false;
+                            
+                         container.showModal();
+                         container.innerHTML = `${player1Name} wins!`;
+                         gameon = false;
                         } else if (playerTurn === true && gameon === true){
                             container.showModal();
                             container.innerHTML = `${player2Name} wins!`;
@@ -121,13 +121,8 @@ let board = [
                     }
                     else if (checkWin() === "tie") {
                         gameStatus.innerHTML = "";
-                        setTimeout(() => {
                         container.showModal();
                         container.innerHTML = "It's a tie!";
-                        }, 200);
-                    }
-                    if ( gameon === false) {
-                        gameContainer.style.pointerEvents = "none";
                     }
 
             });
