@@ -46,19 +46,31 @@ if (checkWin(game.grid) === 0) {
 
 
 
-function startGame(){
+function enterNames(){
     let player1 = prompt("Player 1, enter your name: ");
     let player2 = prompt("Player 2, enter your name: ");
     console.log(player1, player2);
-    consoleGame();
+    startGame();
 }
+
 
 const startButton = document.querySelector("#start-button")
-startButton.addEventListener("click", startGame);
+startButton.addEventListener("click", enterNames);
 
+function startGame() {
+    const allCells = document.querySelectorAll("#game-board div");
+    const ghostLetters = document.querySelectorAll("#game-board span");
 
-function consoleGame() {
-    let playerInput = prompt("place your X or O on the grid 1-9:");
-    playerInput = parseInt(playerInput);
+    ghostLetters.forEach(cell => {
+        cell.addEventListener("mouseover", () => {
+                cell.textContent = "X";
+                console.log(cell.textContent);
+        });
+        cell.addEventListener("mouseout", () => {
+            cell.textContent = "";
+        });
+    });
     
 }
+
+startGame();
