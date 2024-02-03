@@ -60,7 +60,10 @@ let board = [
     }
 
     function addDom() {
+        gameon = true;
         const gameContainer = document.getElementById("game-board");
+        const allCells = document.querySelectorAll("#game-board div");
+        allCells.innerHTML = "";
         const gameStatus = document.getElementById("game-status");
         board = ["", "", "", "", "", "", "", "", ""];
         endmsg.innerHTML = "";
@@ -68,7 +71,6 @@ let board = [
 
         let playerTurn = true;
         board.forEach((cell, index) => {
-            const allCells = document.querySelectorAll("#game-board div");
             const cellDiv = document.querySelector("#game-board div");
             cellDiv.innerHTML = cell;
             gameContainer.appendChild(cellDiv);
@@ -79,14 +81,14 @@ let board = [
                 console.log(playerTurn);
                 
 
-                if (playerTurn === true && board[index] !== "X" && board[index] !== "O") {
+                if (playerTurn === true && board[index] !== "X" && board[index] !== "O" && checkWin() !== true && checkWin() !== "tie"){
                     playerTurn = !playerTurn;
                     board[index] = "X";
                     cellDiv.innerHTML = "X";
                     console.log(board);
                     gameStatus.innerHTML = `${player2Name}'s turn`;
 
-                }   else if (board[index] !== "X" && board[index] !== "O") {
+                }   else if (board[index] !== "X" && board[index] !== "O" && checkWin() !== true && checkWin() !== "tie"){
                         playerTurn = !playerTurn;
                         board[index] = "O";
                         cellDiv.innerHTML = "O";
@@ -103,28 +105,29 @@ let board = [
                     if (checkWin() === true) {
                         gameStatus.innerHTML = "";
                         setTimeout(() => {
-                        allCells.innerHTML = "";
-                        board = ["", "", "", "", "", "", "", "", ""];
-                        }, 200);
+                        }, 500);
 
 
-                        if (playerTurn === false) {
+                        if (playerTurn === false && gameon === true) {
                     
                         container.showModal();
                         container.innerHTML = `${player1Name} wins!`;
-                        } else {
+                        gameon = false;
+                        } else if (playerTurn === true && gameon === true){
                             container.showModal();
                             container.innerHTML = `${player2Name} wins!`;
+                            gameon = false;
                         }
                     }
                     else if (checkWin() === "tie") {
                         gameStatus.innerHTML = "";
                         setTimeout(() => {
-                            allCells.innerHTML = "";
-                            board = ["", "", "", "", "", "", "", "", ""];
-                        }, 200);
                         container.showModal();
                         container.innerHTML = "It's a tie!";
+                        }, 200);
+                    }
+                    if ( gameon === false) {
+                        gameContainer.style.pointerEvents = "none";
                     }
 
             });

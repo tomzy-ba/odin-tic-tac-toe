@@ -30,7 +30,7 @@ body {
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
-    font-size: 5rem;
+    font-size: 8rem;
 }
 #game-board div:hover {
     cursor: pointer;
