@@ -55,19 +55,24 @@ startButton.addEventListener("click", startGame);
 
     function addDom() {
         const gameContainer = document.getElementById("game-board");
+        board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         gameContainer.innerHTML = "";
+        endmsg.innerHTML = "";
+
+        let playerTurn = false;
         board.forEach((cell, index) => {
             const cellDiv = document.createElement("div");
             cellDiv.classList.add("cell");
             cellDiv.innerHTML = cell;
             gameContainer.appendChild(cellDiv);
 
-            player1Turn = false;
-            cellDiv.addEventListener("click", function() {
-                player1Turn = !player1Turn;
-                console.log(player1Turn);
 
-                if (player1Turn === true && board[index] !== "X" && board[index] !== "O") {
+            cellDiv.addEventListener("click", function() {
+                playerTurn = !playerTurn;
+                console.log(playerTurn);
+                
+
+                if (playerTurn === true && board[index] !== "X" && board[index] !== "O") {
                     board[index] = "X";
                     cellDiv.innerHTML = "X";
                     console.log(board);
@@ -80,10 +85,21 @@ startButton.addEventListener("click", startGame);
 
                     if (checkWin() === true) {
                         setTimeout(() => {
-                        alert("Player 1 wins!");
                         gameContainer.innerHTML = "";
                         board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
                         }, 200);
+                        if (playerTurn === true) {
+                    
+                        const container = document.getElementById("endmsg");
+                        const winmsg = document.createElement("h2");
+                        winmsg.innerHTML = `${player1Name} wins!`;
+                        container.append(winmsg);
+                        } else {
+                            const container = document.getElementById("endmsg");
+                            const losemsg = document.createElement("h2");
+                            losemsg.innerHTML = `${player2Name} wins!`;
+                            container.append(losemsg);
+                        }
                     }
 
             });
