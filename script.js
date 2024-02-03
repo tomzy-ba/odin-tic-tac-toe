@@ -8,7 +8,8 @@ let game = {
 };
 
 
-function checkWin(g)  {
+function checkWin()  {
+    g = game.grid;
     const gameEnders = [
     g[0] === g[1] && g[1] === g[2],
     g[3] === g[4] && g[5] === g[5],
@@ -26,6 +27,7 @@ function checkWin(g)  {
     return index;
 }
 if (checkWin(game.grid) === 0) {
+    
 
 } else if (checkWin(game.grid) === 1) {
 
@@ -41,7 +43,8 @@ if (checkWin(game.grid) === 0) {
 
 } else if (checkWin(game.grid) === 7) {
 
-} 
+}
+
 
 
 
@@ -79,6 +82,9 @@ ghostLetters.forEach(letter => {
                 playerTurn = "player2"
 
 
+                game.grid[index] = "X"
+                // console.log(game.grid);
+                console.log(checkWin());
                 
 
                 ghostLetters.forEach(letter => {
@@ -88,6 +94,10 @@ ghostLetters.forEach(letter => {
             } else if (playerTurn === "player2" && cell.textContent !== "X" && cell.textContent !== "O"){
                 cell.textContent = "O";
                 playerTurn = "player1";
+
+                game.grid[index] = "O"
+                // console.log(game.grid);
+                console.log(checkWin());
 
                 ghostLetters.forEach(letter => {
                     letter.textContent = "X";

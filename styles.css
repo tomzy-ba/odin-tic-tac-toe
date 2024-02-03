@@ -32,6 +32,7 @@ body {
     justify-content: center;
     font-size: 8rem;
     cursor: pointer;
+    user-select: none;
 }
 #game-board span {
     width: 100%;
@@ -46,12 +47,6 @@ body {
     opacity: .1;
 }
 
-
-/* #game-board div:hover { */
-    /* transition: 2s; */
-    /* cursor: pointer; */
-    /* color:lightskyblue; */
-/* } */
 #game-board div:nth-child(5) {
     border: 5px solid black;
 }
@@ -89,4 +84,8 @@ body {
 #endmsg {
     font-size: 4rem;
     font-weight: bold;
+}
+
+#line {
+    background-color: red;
 }
