@@ -5,7 +5,7 @@ body {
     align-items: center;
     height: 100vh;
     background-color: lightblue;
-    font-family: "Play", serif; 
+    font-family: "Play", serif!important;
 }
 #header {
     width:100%;
@@ -40,8 +40,8 @@ body {
     opacity: 0;
 }
 #game-board span:hover {
-    transition: .5s;
-    opacity: .05;
+    transition: 1s;
+    opacity: .07;
 }
 
 

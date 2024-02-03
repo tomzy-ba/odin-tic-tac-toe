@@ -57,11 +57,13 @@ function enterNames(){
 const startButton = document.querySelector("#start-button")
 startButton.addEventListener("click", enterNames);
 
+
+let playerTurn = "player1";
 function startGame() {
     const allCells = document.querySelectorAll("#game-board div");
     const ghostLetters = document.querySelectorAll("#game-board span");
 
-let playerTurn = "player1";
+
 ghostLetters.forEach(letter => {
     letter.textContent = "X";
 });
@@ -69,17 +71,19 @@ ghostLetters.forEach(letter => {
 
         
         
-
  
     allCells.forEach(cell => {
+        console.log(cell.innerHTML);
         cell.addEventListener("click", function() {
-            if (playerTurn === "player1") {
+            if (playerTurn === "player1" && cell.textContent !== "X" || cell.textContent !== "O") {
                 cell.textContent = "X";
                 playerTurn = "player2"
+
                 ghostLetters.forEach(letter => {
                     letter.textContent = "O";
                 });
-            } else {
+
+            } else if (playerTurn === "player2" && cell.textContent !== "X" || cell.textContent !== "O"){
                 cell.textContent = "O";
                 playerTurn = "player1";
 
