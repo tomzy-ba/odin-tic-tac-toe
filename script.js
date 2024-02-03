@@ -73,17 +73,18 @@ ghostLetters.forEach(letter => {
         
  
     allCells.forEach(cell => {
-        console.log(cell.innerHTML);
+        console.log(cell.textContent);
         cell.addEventListener("click", function() {
-            if (playerTurn === "player1" && cell.textContent !== "X" || cell.textContent !== "O") {
+            if (playerTurn === "player1" && cell.textContent !== "X" && cell.textContent !== "O") {
                 cell.textContent = "X";
                 playerTurn = "player2"
+                
 
                 ghostLetters.forEach(letter => {
                     letter.textContent = "O";
                 });
 
-            } else if (playerTurn === "player2" && cell.textContent !== "X" || cell.textContent !== "O"){
+            } else if (playerTurn === "player2" && cell.textContent !== "X" && cell.textContent !== "O"){
                 cell.textContent = "O";
                 playerTurn = "player1";
 
