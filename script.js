@@ -18,35 +18,52 @@ function checkWin()  {
     g[1] === g[4] && g[4] === g[7],
     g[2] === g[5] && g[5] === g[8],
     g[0] === g[4] && g[4] === g[8],
-    g[2] === g[4] && g[4] === g[6]
+    g[2] === g[4] && g[4] === g[6],
+    g[0] !== 0 && g[1] !== 1 && g[2] !== 2 && g[3] !== 3 && g[4] !== 4 && g[5] !== 5 && g[6] !== 6 && g[7] !== 7 && g[8] !== 8
 
     ]
     const checkEnders = gameEnders.find(ender => ender === true);
     const index = gameEnders.indexOf(checkEnders);
-
-    return index;
-}
-if (checkWin(game.grid) === 0) {
     
 
-} else if (checkWin(game.grid) === 1) {
+if (index === 0) { // top row
+    console.log("top row");
 
-} else if (checkWin(game.grid) === 2) {
 
-} else if (checkWin(game.grid) === 3) {
+} else if (index === 1) { // middle row
+    console.log("middle row");
 
-} else if (checkWin(game.grid) === 4) {
 
-} else if (checkWin(game.grid) === 5) {
+} else if (index === 2) { // bottom row
+    console.log("bottom row");
 
-} else if (checkWin(game.grid) === 6) {
 
-} else if (checkWin(game.grid) === 7) {
+} else if (index === 3) { // left column
+   console.log("left column"); 
 
+} else if (index === 4) { // middle column
+    console.log("middle column");
+
+} else if (index === 5) { // right column
+    console.log("right column");
+
+
+} else if (index === 6) { // top left to bottom right
+    console.log("top left to bottom right");
+
+
+} else if (index === 7) { // top right to bottom left
+    console.log("top right to bottom left");
+
+
+} else if (index === 8) { // Draw
+    console.log("Draw");
+
+} else {
+    return -1;
 }
-
-
-
+}
+ 
 
 
 function enterNames(){
@@ -77,13 +94,13 @@ ghostLetters.forEach(letter => {
  
     allCells.forEach((cell, index) => {
         cell.addEventListener("click", function() {
-            if (playerTurn === "player1" && cell.textContent !== "X" && cell.textContent !== "O") {
+            if (playerTurn === "player1" && cell.textContent !== "X" && cell.textContent !== "O" && checkWin() == -1) {
+                console.log(checkWin());
                 cell.textContent = "X";
                 playerTurn = "player2"
 
 
                 game.grid[index] = "X"
-                // console.log(game.grid);
                 console.log(checkWin());
                 
 
@@ -91,20 +108,20 @@ ghostLetters.forEach(letter => {
                     letter.textContent = "O";
                 });
 
-            } else if (playerTurn === "player2" && cell.textContent !== "X" && cell.textContent !== "O"){
+            } else if (playerTurn === "player2" && cell.textContent !== "X" && cell.textContent !== "O" && checkWin() == -1){
                 cell.textContent = "O";
                 playerTurn = "player1";
 
                 game.grid[index] = "O"
-                // console.log(game.grid);
                 console.log(checkWin());
 
                 ghostLetters.forEach(letter => {
                     letter.textContent = "X";
                 });
-            }
+            } 
         });
     });
+
 
        
 }
