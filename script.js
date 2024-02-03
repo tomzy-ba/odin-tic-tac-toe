@@ -26,14 +26,14 @@ let board = [
 
     function checkWin() {
         if (
-            board[0] === board[1] && board[1] === board[2] && board[2] == board[2].match(/X|O/g) ||
-            board[3] === board[4] && board[4] === board[5] && board[5] == board[5].match(/X|O/g) ||
-            board[6] === board[7] && board[7] === board[8] && board[8] == board[8].match(/X|O/g) ||
-            board[0] === board[3] && board[3] === board[6] && board[6] == board[6].match(/X|O/g) ||
-            board[1] === board[4] && board[4] === board[7] && board[7] == board[7].match(/X|O/g) ||
-            board[2] === board[5] && board[5] === board[8] && board[8] == board[8].match(/X|O/g) ||
-            board[0] === board[4] && board[4] === board[8] && board[8] == board[8].match(/X|O/g) ||
-            board[2] === board[4] && board[4] === board[6] && board[6] == board[6].match(/X|O/g)
+            (board[0] === board[1] && board[1] === board[2] && board[2] == board[2].match(/X|O/g)) ||
+            (board[3] === board[4] && board[4] === board[5] && board[5] == board[5].match(/X|O/g)) ||
+            (board[6] === board[7] && board[7] === board[8] && board[8] == board[8].match(/X|O/g)) ||
+            (board[0] === board[3] && board[3] === board[6] && board[6] == board[6].match(/X|O/g)) ||
+            (board[1] === board[4] && board[4] === board[7] && board[7] == board[7].match(/X|O/g)) ||
+            (board[2] === board[5] && board[5] === board[8] && board[8] == board[8].match(/X|O/g)) ||
+            (board[0] === board[4] && board[4] === board[8] && board[8] == board[8].match(/X|O/g)) ||
+            (board[2] === board[4] && board[4] === board[6] && board[6] == board[6].match(/X|O/g))
             ) 
             {
                 return true;
@@ -119,10 +119,11 @@ let board = [
                             gameon = false;
                         }
                     }
-                    else if (checkWin() === "tie") {
+                    else if (checkWin() === "tie" && gameon === true) {
                         gameStatus.innerHTML = "";
                         container.showModal();
                         container.innerHTML = "It's a tie!";
+                        gameon = false;
                     }
 
             });

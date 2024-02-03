@@ -33,7 +33,10 @@ body {
     font-size: 8rem;
 }
 #game-board div:hover {
+    transition: .5s;
     cursor: pointer;
+    background-color: lightskyblue; 
+
 }
 #game-board div:nth-child(5) {
     border: 5px solid black;
