@@ -23,35 +23,49 @@ function checkWin()  {
     ]
     const checkEnders = gameEnders.find(ender => ender === true);
     const index = gameEnders.indexOf(checkEnders);
+
+
+    const winAlert = () => {
+        setTimeout(() => {
+        `${playerTurn} wins!`
+    }, 1000);
     
-console.log(game.grid);
+
 if (index === 0) { // top row
+    winAlert();
     console.log("top row");
 
 
 } else if (index === 1) { // middle row
+    winAlert();
     console.log("middle row");
 
 
 } else if (index === 2) { // bottom row
+    winAlert();
     console.log("bottom row");
 
 
 } else if (index === 3) { // left column
+    winAlert();
    console.log("left column"); 
 
 } else if (index === 4) { // middle column
+    winAlert();
     console.log("middle column");
 
 } else if (index === 5) { // right column
+    winAlert();
     console.log("right column");
 
 
 } else if (index === 6) { // top left to bottom right
+    winAlert();
     console.log("top left to bottom right");
 
 
 } else if (index === 7) { // top right to bottom left
+    winAlert();
     console.log("top right to bottom left");
 
 
@@ -60,6 +74,7 @@ if (index === 0) { // top row
 
 } else {
     return -1;
+}
 }
 }
  
@@ -89,13 +104,13 @@ ghostLetters.forEach(letter => {
 
 
         
-        
- 
+let playerTurn = true; 
     allCells.forEach((cell, index) => {
         cell.addEventListener("click", function() {
-            if (playerTurn === "player1" && cell.textContent !== "X" && cell.textContent !== "O" && checkWin() == -1) {
+            console.log(playerTurn);
+            if (playerTurn === true && cell.textContent !== "X" && cell.textContent !== "O" && checkWin() == -1) {
                 cell.textContent = "X";
-                playerTurn = "player2"
+                playerTurn = !playerTurn;
 
 
                 game.grid[index] = "X"
@@ -105,9 +120,9 @@ ghostLetters.forEach(letter => {
                     letter.textContent = "O";
                 });
 
-            } else if (playerTurn === "player2" && cell.textContent !== "X" && cell.textContent !== "O" && checkWin() == -1){
+            } else if (playerTurn === false && cell.textContent !== "X" && cell.textContent !== "O" && checkWin() == -1){
                 cell.textContent = "O";
-                playerTurn = "player1";
+                playerTurn = !playerTurn;
 
                 game.grid[index] = "O"
 
@@ -122,5 +137,3 @@ ghostLetters.forEach(letter => {
 
        
 }
-
-startGame();
