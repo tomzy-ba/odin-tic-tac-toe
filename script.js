@@ -19,16 +19,23 @@ function checkWin()  {
     g[2] === g[5] && g[5] === g[8],
     g[0] === g[4] && g[4] === g[8],
     g[2] === g[4] && g[4] === g[6],
+    g[0] !== 0 && g[1] !== 1 && g[2] !== 2 && g[3] !== 3 && g[4] !== 4 && g[5] !== 5 && g[6] !== 6 && g[7] !== 7 && g[8] !== 8
 
     ]
     const checkEnders = gameEnders.find(ender => ender === true);
     const index = gameEnders.indexOf(checkEnders);
+    console.log(index);
 
 
-    const winAlert = () => {
+    function winAlert()  {
         setTimeout(() => {
-        `${playerTurn} wins!`
-    }, 1000);
+            if(playerTurn === true) {
+                alert("Player 2 wins!");
+            } else {
+                alert("Player 1 wins!");
+            }
+        }, 100);
+    };
     
 
 if (index === 0) { // top row
@@ -44,6 +51,7 @@ if (index === 0) { // top row
 } else if (index === 2) { // bottom row
     winAlert();
     console.log("bottom row");
+
 
 
 } else if (index === 3) { // left column
@@ -70,13 +78,16 @@ if (index === 0) { // top row
 
 
 } else if (index === 8) { // Draw
+    setTimeout(() => {
+    alert("Draw");
+    }, 100);
     console.log("Draw");
 
 } else {
     return -1;
 }
 }
-}
+
  
 
 
@@ -89,13 +100,17 @@ function enterNames(){
 
 
 const startButton = document.querySelector("#start-button")
-startButton.addEventListener("click", enterNames);
+startButton.addEventListener("click", () => {location.reload()});
 
+let playerTurn = true;
+let gameEnd = false;
 
-let playerTurn = "player1";
 function startGame() {
+    const gameBoard = document.querySelector("#game-board");
     const allCells = document.querySelectorAll("#game-board div");
     const ghostLetters = document.querySelectorAll("#game-board span");
+
+
 
 
 ghostLetters.forEach(letter => {
@@ -103,11 +118,8 @@ ghostLetters.forEach(letter => {
 });
 
 
-        
-let playerTurn = true; 
     allCells.forEach((cell, index) => {
         cell.addEventListener("click", function() {
-            console.log(playerTurn);
             if (playerTurn === true && cell.textContent !== "X" && cell.textContent !== "O" && checkWin() == -1) {
                 cell.textContent = "X";
                 playerTurn = !playerTurn;
@@ -119,8 +131,9 @@ let playerTurn = true;
                 ghostLetters.forEach(letter => {
                     letter.textContent = "O";
                 });
+                checkWin();
 
-            } else if (playerTurn === false && cell.textContent !== "X" && cell.textContent !== "O" && checkWin() == -1){
+            } else if (playerTurn === false && cell.textContent !== "X" && cell.textContent !== "O" && checkWin() == -1) { 
                 cell.textContent = "O";
                 playerTurn = !playerTurn;
 
@@ -129,11 +142,24 @@ let playerTurn = true;
                 ghostLetters.forEach(letter => {
                     letter.textContent = "X";
                 });
+                checkWin();
             } 
-            checkWin();
         });
     });
 
 
        
 }
+function winAlert()  {
+    if (gameEnd === true) {
+        return;
+    }
+    else if (playerTurn === true){
+        alert(`${player1} wins!`);
+    } else {
+        alert(`${player2} wins!`);
+    }
+    gameEnd = true;
+}
+
+enterNames();
